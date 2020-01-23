@@ -3,10 +3,13 @@ const session = require('express-session')
 const passport = require('passport')
 const loginRouter = require('./routes/login')
 const registerRouter = require('./routes/register')
+const passportInit = require('./passport-config')
+const mongooseConnection = require('./mongooseConnection')
+
 const PORT = process.env.PORT || 3000
 const app = express()
-const passportInit = require('./passport-config')
 
+mongooseConnection()
 
 app.set('view engine', 'hbs')
 
