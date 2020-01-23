@@ -16,6 +16,11 @@ app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: false }))
 app.use('/login', loginRouter)
 app.use('/register', registerRouter)
+app.use(session({
+    process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+}))
 
 app.get('/', (req, res) => {
     res.render('index')
