@@ -7,6 +7,7 @@ const registerRouter = require('./routes/register')
 const mongooseConnection = require('./mongooseConnection')
 const passportInit = require('./passport-config')
 const flash = require('express-flash')
+const isAuth = require('./utils/isAuth')
 
 const PORT = process.env.PORT || 3000
 const app = express()
@@ -36,7 +37,7 @@ passportInit(passport)
 app.use('/login', loginRouter)
 app.use('/register', registerRouter)
 
-app.get('/', (req, res) => {
+app.get('/', isAuth, (req, res) => {
     res.render('index')
 })
 
